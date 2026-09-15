@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Customers</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<nav>
+
+    <h2>E-Commerce Analytics</h2>
+
+    <div>
+
+        <a href="/">Dashboard</a>
+        <a href="/customers">Customers</a>
+        <a href="/products">Products</a>
+        <a href="/orders">Orders</a>
+        <a href="/analytics">Analytics</a>
+        <a href="/predictions">Predictions</a>
+        <a href="/logout">Logout</a>
+
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+<h1>Customers</h1>
+
+<form method="post" class="data-form">
+    <h2>Add Customer</h2>
+    <input name="customer_name" placeholder="Customer name" required>
+    <input name="email" type="email" placeholder="Email" required>
+    <input name="phone" placeholder="Phone">
+    <input name="city" placeholder="City">
+    <input name="state" placeholder="State">
+    <input name="country" placeholder="Country" value="India">
+    <select name="gender">
+        <option value="">Gender</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+    </select>
+    <input name="age" type="number" min="1" max="120" placeholder="Age">
+    <button type="submit">Add Customer</button>
+</form>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+<th>Name</th>
+<th>Email</th>
+<th>Phone</th>
+<th>City</th>
+<th>State</th>
+<th>Gender</th>
+<th>Age</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for customer in customers %}
+
+<tr>
+
+<td>{{ customer.customer_id }}</td>
+
+<td>{{ customer.customer_name }}</td>
+
+<td>{{ customer.email }}</td>
+
+<td>{{ customer.phone }}</td>
+
+<td>{{ customer.city }}</td>
+
+<td>{{ customer.state }}</td>
+
+<td>{{ customer.gender }}</td>
+
+<td>{{ customer.age }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</body>
+
+</html>

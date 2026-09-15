@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<nav>
+
+    <h2>E-Commerce Analytics</h2>
+
+    <div>
+
+        <a href="/">Dashboard</a>
+
+        <a href="/customers">Customers</a>
+
+        <a href="/products">Products</a>
+
+        <a href="/orders">Orders</a>
+
+        <a href="/analytics">Analytics</a>
+        <a href="/predictions">Predictions</a>
+        <a href="/logout">Logout</a>
+
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <h1>Dashboard</h1>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Total Revenue</h3>
+            <p>₹{{ "%.2f"|format(revenue) }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Orders</h3>
+            <p>{{ orders }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Customers</h3>
+            <p>{{ customers }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Products</h3>
+            <p>{{ products }}</p>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

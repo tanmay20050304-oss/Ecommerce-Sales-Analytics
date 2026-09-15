@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Analytics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<nav>
+    <h2>E-Commerce Analytics</h2>
+    <div>
+        <a href="/">Dashboard</a>
+        <a href="/customers">Customers</a>
+        <a href="/products">Products</a>
+        <a href="/orders">Orders</a>
+        <a href="/analytics">Analytics</a>
+        <a href="/predictions">Predictions</a>
+        <a href="/logout">Logout</a>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>Analytics</h1>
+
+    <h2>Top Products</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Units Sold</th>
+                <th>Revenue</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in top_products %}
+            <tr>
+                <td>{{ product.product_name }}</td>
+                <td>{{ product.units_sold }}</td>
+                <td>₹{{ product.revenue }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Category Revenue</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Revenue</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in categories %}
+            <tr>
+                <td>{{ category.category_name }}</td>
+                <td>₹{{ category.revenue }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Monthly Revenue</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Month</th>
+                <th>Revenue</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in monthly %}
+            <tr>
+                <td>{{ item.month }}</td>
+                <td>₹{{ item.revenue }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Top Customers</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Spending</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for customer in top_customers %}
+            <tr>
+                <td>{{ customer.customer_name }}</td>
+                <td>₹{{ customer.spending }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+
+</html>

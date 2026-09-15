@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Orders</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<nav>
+    <h2>E-Commerce Analytics</h2>
+    <div>
+        <a href="/">Dashboard</a>
+        <a href="/customers">Customers</a>
+        <a href="/products">Products</a>
+        <a href="/orders">Orders</a>
+        <a href="/analytics">Analytics</a>
+        <a href="/predictions">Predictions</a>
+        <a href="/logout">Logout</a>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>Orders</h1>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('orders') }}" class="order-form">
+        <label>
+            Customer
+            <select name="customer_id" required>
+                <option value="">Select customer</option>
+                {% for customer in customers %}
+                    <option value="{{ customer.customer_id }}">{{ customer.customer_name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+
+        <label>
+            Product
+            <select name="product_id" required>
+                <option value="">Select product</option>
+                {% for product in products %}
+                    <option value="{{ product.product_id }}">{{ product.product_name }} - ₹{{ product.price }}</option>
+                {% endfor %}
+            </select>
+        </label>
+
+        <label>
+            Quantity
+            <input type="number" name="quantity" min="1" value="1" required>
+        </label>
+
+        <label>
+            Status
+            <select name="order_status">
+                <option value="Pending">Pending</option>
+                <option value="Shipped">Shipped</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Cancelled">Cancelled</option>
+            </select>
+        </label>
+
+        <label>
+            Order Date
+            <input type="date" name="order_date">
+        </label>
+
+        <button type="submit">Add Order</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Total Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.order_id }}</td>
+                <td>{{ order.customer_name }}</td>
+                <td>{{ order.order_date }}</td>
+                <td>{{ order.order_status }}</td>
+                <td>₹{{ order.total_amount }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+
+</html>
